@@ -25,7 +25,7 @@ body {
 /* imgsprites */
 
 img.crusadersprite1 {
-    height: 40vh;
+    height: 25vh;
     position: fixed;
     top: 3rem;
     left: 0;
@@ -44,6 +44,7 @@ img.skellyBrute {
     opacity: 0;
     width: 0;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
 }
 
 img.skellyRanger {
@@ -55,6 +56,7 @@ img.skellyRanger {
     opacity: 0;
     width: 0;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
 }
 
 img.barroChill {
@@ -66,6 +68,7 @@ img.barroChill {
     opacity: 0;
     width: 0;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
 }
 
 img.barroMad {
@@ -77,6 +80,7 @@ img.barroMad {
     opacity: 0;
     width: 0;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
 }
 
 /* EVENT 1 START */
@@ -93,7 +97,7 @@ img.barroMad {
         top: 35rem;
         left: 4rem;
         border-radius: 50%;
-        z-index: 200;
+        z-index: 2;
         text-align: center;
         cursor: pointer;
         font-size: 2.5rem;
