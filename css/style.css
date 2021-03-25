@@ -24,11 +24,37 @@ body {
 
 /* imgsprites */
 
-img.crusadersprite1 {
-    height: 25vh;
+img.attackIcon {
     position: fixed;
-    top: 3rem;
-    left: 0;
+    bottom: 1rem;
+    right: 50vw;
+    z-index: 50;
+    opacity: 0;
+    height: 0;
+    border: 2px solid black;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+img.armorIcon {
+    position: fixed;
+    bottom: 1rem;
+    left: 50vw;
+    z-index: 50;
+    opacity: 0;
+    height: 0;
+    border: 2px solid black;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+img.crusadersprite1 {
+    position: fixed;
+    top: 10rem;
+    left: 2rem;
     z-index: 50;
     opacity: 0;
     width: 0;
@@ -36,10 +62,9 @@ img.crusadersprite1 {
 }
 
 img.skellyBrute {
-    height: 40vh;
     position: fixed;
-    top: 3rem;
-    right: 0;
+    top: 10rem;
+    right: 5rem;
     z-index: 50;
     opacity: 0;
     width: 0;
@@ -48,10 +73,9 @@ img.skellyBrute {
 }
 
 img.skellyRanger {
-    height: 40vh;
     position: fixed;
-    top: 3rem;
-    right: 0;
+    top: 10rem;
+    right: 5rem;
     z-index: 50;
     opacity: 0;
     width: 0;
@@ -60,7 +84,6 @@ img.skellyRanger {
 }
 
 img.barroChill {
-    height: 40vh;
     position: fixed;
     top: 3rem;
     right: 0;
@@ -72,7 +95,6 @@ img.barroChill {
 }
 
 img.barroMad {
-    height: 40vh;
     position: fixed;
     top: 3rem;
     right: 0;
@@ -115,7 +137,7 @@ img.barroMad {
     transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
 }
 
-.event1__checkbox:checked ~ .event1__background {
+.event1__checkbox.clickable:checked ~ .event1__background {
     transform: scale(200);
     z-index: 2;
 }
