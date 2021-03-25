@@ -85,8 +85,8 @@ img.skellyRanger {
 
 img.barroChill {
     position: fixed;
-    top: 3rem;
-    right: 0;
+    top: 10rem;
+    right: 5rem;
     z-index: 50;
     opacity: 0;
     width: 0;
@@ -96,7 +96,7 @@ img.barroChill {
 
 img.barroMad {
     position: fixed;
-    top: 3rem;
+    top: 10rem;
     right: 0;
     z-index: 50;
     opacity: 0;
@@ -139,7 +139,7 @@ img.barroMad {
 
 .event1__checkbox.clickable:checked ~ .event1__background {
     transform: scale(200);
-    z-index: 2;
+    z-index: 3;
 }
 
 
@@ -149,3 +149,268 @@ img.barroMad {
     width: 100vw;
 } */
 /* EVENT 1 END */
+
+/* event 2 */
+.event2__checkbox{
+    display: none;
+}
+
+.event2__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        top: 35rem;
+        left: 60rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event2__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 35rem;
+    left: 60rem;
+    background-image: radial-gradient(rgb(94, 42, 0), rgb(155, 8, 8));
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event2__checkbox.clickable:checked ~ .event2__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* end event 2 */
+
+/* start event 3 */
+.event3__checkbox{
+    display: none;
+}
+
+.event3__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        bottom: 30rem;
+        left: 85rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event3__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 30rem;
+    left: 85.5rem;
+    background-image: radial-gradient(red, black);
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event3__checkbox.clickable:checked ~ .event3__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* end event 3 */
+
+/* begin event 4 */
+.event4__checkbox{
+    display: none;
+}
+
+.event4__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        bottom: 15rem;
+        right: 55rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event4__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 15rem;
+    right: 55.2rem;
+    background-image: radial-gradient(red, black);
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event4__checkbox.clickable:checked ~ .event4__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* end event 4 */
+
+/* begin event 5 */
+.event5__checkbox{
+    display: none;
+}
+
+.event5__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        bottom: 14.5rem;
+        right: 10rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event5__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 14.5rem;
+    right: 10.2rem;
+    background-image: radial-gradient(rgb(94, 42, 0), rgb(155, 8, 8));
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event5__checkbox.clickable:checked ~ .event5__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* event 5 end */
+
+/* begin event 6 */
+.event6__checkbox{
+    display: none;
+}
+
+.event6__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        bottom: 38rem;
+        right: 65rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event6__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 38rem;
+    right: 65.2rem;
+    background-image: radial-gradient(red, black);
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event6__checkbox.clickable:checked ~ .event6__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* end event 6 */
+
+/* begin event 7 */
+.event7__checkbox{
+    display: none;
+}
+
+.event7__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        top: 40rem;
+        right: 40rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event7__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 40rem;
+    right: 40rem;
+    background-image: radial-gradient(rgb(94, 42, 0), rgb(155, 8, 8));
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event7__checkbox.clickable:checked ~ .event7__background {
+    transform: scale(200);
+    z-index: 3;
+}
+/* end event 7 */
+
+/* start event 8 */
+.event8__checkbox{
+    display: none;
+}
+
+.event8__button {
+    /**/
+        background-color: #fff;
+        height: 3rem;
+        width: 3rem;
+        position: fixed;
+        top: 20rem;
+        right: 55rem;
+        border-radius: 50%;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2.5rem;
+}
+
+.event8__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 20rem;
+    right: 55.2rem;
+    background-image: radial-gradient(red, black);
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.86,0,0.7,1);
+}
+
+.event8__checkbox.clickable:checked ~ .event8__background {
+    transform: scale(200);
+    z-index: 3;
+}
