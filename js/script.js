@@ -3,7 +3,7 @@ const skellyRangerSprite = document.querySelector('.skellyRanger');
 const skellyBruteSprite = document.querySelector('.skellyBrute');
 const barroChillSprite = document.querySelector('.barroChill');
 const barroMadSprite = document.querySelector('.barroMad');
-const event1Check = document.querySelector('.event1__checkbox');
+const event1Check = document.querySelector('.event1__checkbox.clickable');
 
 const attackIcon = document.querySelector('.attackIcon');
 const armorIcon = document.querySelector('.armorIcon');
@@ -25,20 +25,23 @@ class SkellySoldier {
         this.currentHP = this.maxHP;
         this.evadeChance = Math.random() * 0.3 + 0.1;
         this.Moneypayout = this.level * 10;
-        this.xpPayout = this.level * 10;
+        this.maxDamage = this.level * 20;
     }
     attack(enemy) {
-        if(Math.random() > enemy.evadeChance){
-            let attackDamage = Math.floor(Math.random() * (this.level * 5) - enemy.armor);
-            enemy.currentHP -= attackDamage;
-            enemy.armor -= attackDamage;
+        if(Math.random() > enemy.evadeChance && playerTurn === false){
+            let damageThisTime = Math.floor(Math.random() * this.maxDamage) + 10;
+            if(damageThisTime - enemy.armor > 0){
+                enemy.currentHP -= damageThisTime - enemy.armor;
+            }
+            enemy.armor -= damageThisTime;
             if(enemy.armor < 0){
                 enemy.armor = 0;
             }
-            console.log('you were attacked by a ' + enemy.name + ' your health is ' + enemy.currentHP);
+            console.log('you were attacked by a ' + this.name + ' your health is ' + enemy.currentHP);
         }else {
             console.log('you dodged him');
         }
+        playerTurn = true;
     }
 }
 
@@ -64,15 +67,15 @@ class Crusader {
         this.level = level;
         this.maxHP = Math.floor(Math.random() * (this.level * 100)) + (this.level * 50);
         this.currentHP = this.maxHP;
-        this.evadeChance = .48;
+        this.evadeChance = .28;
         this.sprite = crusaderSprite;
         this.name = 'The Crusader';
         this.armor = 0;
-        this.maxDamage = 20;
+        this.maxDamage = 40;
     }
     attack(enemy) {
         if(Math.random() > enemy.evadeChance){
-            enemy.currentHP -= Math.floor(Math.random() * this.maxDamage) + 5;
+            enemy.currentHP -= Math.floor(Math.random() * this.maxDamage) + 10;
             console.log('you attacked the ' + enemy.name + ' his health is ' + enemy.currentHP);
         }else {
             console.log('he dodged your puny attack nimbly');
@@ -81,34 +84,83 @@ class Crusader {
 }
 
 const player = new Crusader(1);
+console.log('crusader: ', player.currentHP);
+//MAKING THE GAME GO WITH EVERY ATTACK
 
 const playersAttack = () => {
-    player.attack(currentEnemy);
-    playersAttack.called = true;
+    if(playerTurn === true){
+        player.attack(currentEnemy);
+    }
+    playerTurn = false;
+    // playersAttack.called = true;
+    if(currentEnemy.currentHP > 0){
+        setTimeout(() => {enemyRetaliate();}, 2000);
+    }
+    if(player.currentHP <= 0 || currentEnemy.currentHP <= 0) {
+    player.armor = 0;
+    let location = currentEvent;
+    location.checked = false;
+    location.classList.remove('clickable');
+    undoAnimateCharacter(player);
+    undoAnimateCharacter(currentEnemy);
+    undoAnimateButtons();
+    currentEvent = null;
+    }
 }
 
 const playersArmor = () => {
-    player.armor += Math.floor(Math.random() * 20) + 1;
-    console.log(player.armor);
-    playersArmor.called = true;
+    if(playerTurn === true){
+        player.armor += Math.floor(Math.random() * 20) + 1;
+        console.log(player.armor);
+    }
+    playerTurn = false;
+    // playersArmor.called = true;
+    if(currentEnemy.currentHP > 0){
+        setTimeout(() => {enemyRetaliate();}, 2000);
+    }
+    if(player.currentHP <= 0 || currentEnemy.currentHP <= 0) {
+    player.armor = 0;
+    let location = currentEvent;
+    location.checked = false;
+    location.classList.remove('clickable');
+    undoAnimateCharacter(player);
+    undoAnimateCharacter(currentEnemy);
+    undoAnimateButtons();
+    currentEvent = null;
+    }
 }
+
+const enemyRetaliate = () => {
+    currentEnemy.attack(player);
+}
+// const checkForAction = () => {
+//     if(playersArmorCalled){
+//         playersArmorCalled = false;
+//         return true;
+//     }else if(playersAttackCalled){
+//         playersAttackCalled = false
+//         return true;
+//     }else{
+//         return false;
+//     }
+// }
 
 //ENEMIES FOR EACH BATTLE
 let currentEnemy = null;
 
-const battle1Brute = new SkellyBrute(5);
+const battle1Brute = new SkellyBrute(1);
 console.log(battle1Brute.currentHP);
 
-const battle2Brute = new SkellyBrute(7);
+const battle2Brute = new SkellyBrute(3);
 
-const battle3Ranger = new SkellyRanger(9);
+const battle3Ranger = new SkellyRanger(5);
 
-const battle4Ranger = new SkellyRanger(7);
-const battle4Brute = new SkellyBrute(7);
+const battle4Ranger = new SkellyRanger(5);
+const battle4Brute = new SkellyBrute(5);
 
 //track battle
-let inBattle = false;
 let playerTurn = true;
+let currentEvent = null;
 
 //ANIMATE AND DEANIMATE CHARACTER SPRITES
 const animateCharacter = (character) => {
@@ -130,6 +182,7 @@ const undoAnimateCharacter = (character) => {
     character.sprite.style.opacity = '0';
 }
 
+//ANIMATE AND DEANIMATE BUTTONS
 const animateButtons = () => {
     attackIcon.style.width = '512px';
     attackIcon.style.height = '512px';
@@ -148,47 +201,57 @@ const undoAnimateButtons = () => {
     armorIcon.style.opacity = '0';
 }
 //Game Loop
-const fightingPossibility = (enemy) => {
-    setTimeout(() => { }, 2000);
-    if(playersAttack.called && playerTurn === true){
-        console.log('you attack');
-        playersAttack.called = false;
-        playerTurn = false;
-    }else if(playersArmor === 'called' && playerTurn === true){
-        console.log('you gain armor');
-        playersArmor.called = false;
-        playerTurn = false;
-    }
-    if(playerTurn === false){
-        enemy.attack(player);
-        console.log('enemy attacked');
-        playerTurn = true;
-    }    
-}
+// const fightingPossibility = (enemy) => {               <== broken.. starting over
+//     setTimeout(() => { }, 2000);
+//     if(playersAttack.called && playerTurn === true){
+//         console.log('you attack');
+//         playersAttack.called = false;
+//         playerTurn = false;
+//     }else if(playersArmor === 'called' && playerTurn === true){
+//         console.log('you gain armor');
+//         playersArmor.called = false;
+//         playerTurn = false;
+//     }
+//     if(playerTurn === false){
+//         enemy.attack(player);
+//         console.log('enemy attacked');
+//         playerTurn = true;
+//     }else{
+//         setTimeout(() => { }, 2000);
+//     }    
+// }
 
-function fightingLoop() {
-    while (player.currentHP > 0 && currentEnemy.currentHP > 0) {
-        fightingPossibility(currentEnemy);
-    }
+// function fightingLoop() {
+//     while (player.currentHP > 0 && currentEnemy.currentHP > 0) {
+//         fightingPossibility(currentEnemy);
+//     }
 
-}
+// }
+// const fightingLoop = (location) => {
+    
+//     location.checked = false;
+//     location.classList.remove('clickable');
+//     undoAnimateCharacter(player);
+//     undoAnimateCharacter(currentEnemy);
+//     undoAnimateButtons();
+//     currentEvent = null;
+// }
 
 //Starting from checkbox change
 startBattle = (event) => {
-    if(event.target.checked === true){
+    if(event.target.checked === true && event.target.classList.contains('clickable')){
         animateCharacter(player);
         eventTarget = event.target;
         inBattle = true;
         if(event.target === event1Check){
+            currentEvent = event1Check;
             currentEnemy = battle1Brute;
             animateCharacter(currentEnemy);
             animateButtons();
         }
-        setTimeout(() => { fightingLoop() }, 1000);
         // fightingLoop(currentEnemy);
     }else {
-        crusaderSprite.style.width = '0';
-        crusaderSprite.style.opacity = '0';
+        undoAnimateCharacter(player);
         undoAnimateCharacter(currentEnemy);
     }
 }
