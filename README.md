@@ -23,8 +23,8 @@ When requesting a pull, please state:
 * bugs found/created that are unfixed
 
 ## Current Bugs/Breaks
-*tiles need to be completely reformatted at a smaller screen width
-*Clicking the next button too fast (within .5s of the end of the prior battle) will open the background of that event without opening the event itself, causing a need for a page refresh and restart
+* Tiles need to be completely reformatted at a smaller screen width
+* Clicking the next button too fast (within .5s of the end of the prior battle) will open the background of that event without opening the event itself, causing a need for a page refresh and restart
 
 ## My work
 https://github.com/agcarvr
