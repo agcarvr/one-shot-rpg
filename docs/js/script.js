@@ -378,86 +378,92 @@ const undoAnimateButtons = () => {
 //     }
 // }
                             
-                            //Starting from checkbox change
-                            const startBattle = (event) => {
-                                if(event.target.checked === true){
-                                    eventTarget = event.target;
-                                    if(eventTarget === event1Check && event1Check.classList.contains('clickable')){
-                                        alert('Press the sword button to attack. Press the shield button to gain a varying amount of armor. Your health is the top bar, your armor is the bottom bar. Be careful! Your enemy will attack simultaniously when you choose your action.');
-                                        currentEvent = event1Check;
-                                        nextEvent = event2Check;
-                                        currentIcon = event1Icon;
-                                        nextIcon = event2Icon;
-                                        currentEnemy = battle1Brute;
-                                        animateButtons();
-                                        animateCharacter(player);
-                                        animateCharacter(currentEnemy);
-                                    }else if(eventTarget === event2Check && event2Check.classList.contains('clickable')){
-            alert('After defeating your first enemy, you stumble upon an abandoned town. No noise, no lights. Save for 1 tavern, that has a warm glow inside. You enter and are greeted');
-            currentEvent = event2Check;
-            nextEvent = event3Check;
-            currentIcon = event2Icon;
-            nextIcon = event3Icon;
-            currentEnemy = theChillBarro;
-            event2dialogue();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event3Check && event3Check.classList.contains('clickable')){
-            currentEvent = event3Check;
-            nextEvent = event4Check;
-            currentIcon = event3Icon;
-            nextIcon = event4Icon;
-            currentEnemy = battle2Ranger;
-            animateButtons();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event4Check && event4Check.classList.contains('clickable')){
-            alert('Your health does not regenerate if you have not visited a bartender');
-            currentEvent = event4Check;
-            nextEvent = event5Check;
-            currentIcon = event4Icon;
-            nextIcon = event5Icon;
-            currentEnemy = battle3Brute;
-            animateButtons();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event5Check && event5Check.classList.contains('clickable')){
-            alert('After a long hike, with a few encounters you reach the next barten-- wait a minute');
-            currentEvent = event5Check;
-            nextEvent = event6Check;
-            currentIcon = event5Icon;
-            nextIcon = event6Icon;
-            currentEnemy = theChillBarro;
-            event5dialogue();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event6Check && event6Check.classList.contains('clickable')){
-            currentEvent = event6Check;
-            nextEvent = event7Check;
-            currentIcon = event6Icon;
-            nextIcon = event7Icon;
-            currentEnemy = battle4Ranger;
-            animateButtons();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event7Check && event7Check.classList.contains('clickable')){
-            alert('okay I cant say I didnt see this coming');
-            currentEvent = event7Check;
-            nextEvent = event8Check;
-            currentIcon = event7Icon;
-            nextIcon = event8Icon;
-            currentEnemy = theChillBarro;
-            event7dialogue();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event8Check && event8Check.classList.contains('clickable')){
-            currentEvent = event8Check;
-            currentIcon = event8Icon;
-            currentEnemy = theChillBarro;
-            event8dialogue();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }
+//Starting from checkbox change
+const startBattle = (event) => {
+    if(event.target.checked === true){
+eventTarget = event.target;
+    if(eventTarget === event1Check && event1Check.classList.contains('clickable')){
+        alert('Press the sword button to attack. Press the shield button to gain a varying amount of armor. Your health is the top bar, your armor is the bottom bar. Be careful! Your enemy will attack simultaniously when you choose your action.');
+        currentEvent = event1Check;
+        nextEvent = event2Check;
+        currentIcon = event1Icon;
+        nextIcon = event2Icon;
+        currentEnemy = battle1Brute;
+        animateButtons();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }else if(eventTarget === event2Check && event2Check.classList.contains('clickable')){
+        alert('After defeating your first enemy, you stumble upon an abandoned town. No noise, no lights. Save for 1 tavern, that has a warm glow inside. You enter and are greeted');
+        currentEvent = event2Check;
+        nextEvent = event3Check;
+        currentIcon = event2Icon;
+        nextIcon = event3Icon;
+        currentEnemy = theChillBarro;
+        event2dialogue();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+    }else if(eventTarget === event3Check && event3Check.classList.contains('clickable')){
+        currentEvent = event3Check;
+        nextEvent = event4Check;
+        currentIcon = event3Icon;
+        nextIcon = event4Icon;
+        currentEnemy = battle2Ranger;
+        animateButtons();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }else if(eventTarget === event4Check && event4Check.classList.contains('clickable')){
+        alert('Your health does not regenerate if you have not visited a bartender');
+        currentEvent = event4Check;
+        nextEvent = event5Check;
+        currentIcon = event4Icon;
+        nextIcon = event5Icon;
+        currentEnemy = battle3Brute;
+        animateButtons();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }else if(eventTarget === event5Check && event5Check.classList.contains('clickable')){
+        alert('After a long hike, with a few encounters you reach the next barten-- wait a minute');
+        currentEvent = event5Check;
+        nextEvent = event6Check;
+        currentIcon = event5Icon;
+        nextIcon = event6Icon;
+        currentEnemy = theChillBarro;
+        event5dialogue();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+    }else if(eventTarget === event6Check && event6Check.classList.contains('clickable')){
+        currentEvent = event6Check;
+        nextEvent = event7Check;
+        currentIcon = event6Icon;
+        nextIcon = event7Icon;
+        currentEnemy = battle4Ranger;
+        animateButtons();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }else if(eventTarget === event7Check && event7Check.classList.contains('clickable')){
+        alert('okay I cant say I didnt see this coming');
+        currentEvent = event7Check;
+        nextEvent = event8Check;
+        currentIcon = event7Icon;
+        nextIcon = event8Icon;
+        currentEnemy = theChillBarro;
+        event7dialogue();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }else if(eventTarget === event8Check && event8Check.classList.contains('clickable')){
+        currentEvent = event8Check;
+        currentIcon = event8Icon;
+        currentEnemy = theChillBarro;
+        event8dialogue();
+        animateCharacter(player);
+        animateCharacter(currentEnemy);
+        updateBars();
+    }
         // fightingLoop(currentEnemy);
     // }else {
     //     undoAnimateCharacter(player);
