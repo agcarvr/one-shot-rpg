@@ -105,6 +105,47 @@ img.barroMad {
     cursor: pointer;
 }
 
+.heroHealth{
+    transform: scale(2);
+    border: 5px solid black;
+    margin: 1rem;
+    position: fixed;
+    bottom: 10rem;
+    left: 2rem;
+    height: 0;
+    opacity: 0;
+    background: green;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 50;
+}
+
+.enemyHealth{
+    transform: scale(2);
+    position: fixed;
+    bottom: 10rem;
+    right: 2rem;
+    height: 0;
+    opacity: 0;
+    background: rgb(255, 123, 0);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 50;
+    border: 5px solid black;
+    margin: 1rem;
+}
+
+.heroArmor{
+    transform: scale(2);
+    position: fixed;
+    bottom: 0rem;
+    left: 2rem;
+    height: 0;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 50;
+    border: 5px solid black;
+    margin: 1rem;
+}
+
 /* EVENT 1 START */
 .event1__checkbox{
     display: none;
@@ -413,4 +454,10 @@ img.barroMad {
 .event8__checkbox.clickable:checked ~ .event8__background {
     transform: scale(200);
     z-index: 3;
+}
+
+@media screen and (max-width: 985px) {
+    html{
+        font-size: 8px;
+    }
 }

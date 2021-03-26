@@ -6,6 +6,11 @@ const skellyBruteSprite = document.querySelector('.skellyBrute');
 const barroChillSprite = document.querySelector('.barroChill');
 const barroMadSprite = document.querySelector('img.barroMad');
 
+//health bars
+const heroHealthBar = document.querySelector('.heroHealth');
+const heroArmorBar = document.querySelector('.heroArmor');
+const enemyHealthBar = document.querySelector('.enemyHealth');
+
 //getting checkboxes for events, and icons for changing
 const event1Check = document.querySelector('.event1__checkbox.clickable');
 const event1Icon = document.querySelector('.event1__icon');
@@ -141,12 +146,13 @@ const playersAttack = () => {
     if(currentEnemy.currentHP > 0){
         enemyRetaliate();
     }
+    updateBars();
     if(barro.currentHP <= 0){
         const winContain = document.createElement('div');
         winContain.style.position = 'absolute';
         winContain.style.top = '50%';
         winContain.style.left = '50%';
-        winContain.style.backgroundColor = 'red';
+        winContain.style.backgroundColor = 'blue';
         winContain.style.zIndex = '2500';
         const youWin = document.createElement('h1');
         youWin.innerText = "You destroyed the amulet and fulfilled your destiny. You will be hailed as a hero by your fellow crusaders at the church";
@@ -179,10 +185,10 @@ const playersAttack = () => {
         winContain.style.position = 'absolute';
         winContain.style.top = '50%';
         winContain.style.left = '50%';
-        winContain.style.backgroundColor = 'red';
+        winContain.style.backgroundColor = 'blue';
         winContain.style.zIndex = '2500';
         const youWin = document.createElement('h1');
-        youWin.innerText = "Died pitifully. Luckily you can respawn on the island of the dead";
+        youWin.innerText = "You died pitifully. Luckily you can respawn on the island of the dead";
         document.querySelector('body').appendChild(winContain);
         winContain.appendChild(youWin);
         const resetButton = document.createElement('button');
@@ -207,15 +213,16 @@ const playersArmor = () => {
     if(currentEnemy.currentHP > 0){
         enemyRetaliate();
     }
+    updateBars();
     if(player.currentHP <= 0) {
         const winContain = document.createElement('div');
         winContain.style.position = 'absolute';
         winContain.style.top = '50%';
         winContain.style.left = '50%'
-        winContain.style.backgroundColor = 'red';
+        winContain.style.backgroundColor = 'blue';
         winContain.style.zIndex = '2500';
         const youWin = document.createElement('h1');
-        youWin.innerText = "Died pitifully. Luckily you can respawn on the island of the dead";
+        youWin.innerText = "You died pitifully. Luckily you can respawn on the island of the dead";
         document.querySelector('body').appendChild(winContain);
         winContain.appendChild(youWin);
         const resetButton = document.createElement('button');
@@ -235,17 +242,20 @@ const playersArmor = () => {
 const enemyRetaliate = () => {
     currentEnemy.attack(player);
 }
-// const checkForAction = () => {
-//     if(playersArmorCalled){
-//         playersArmorCalled = false;
-//         return true;
-//     }else if(playersAttackCalled){
-//         playersAttackCalled = false
-//         return true;
-//     }else{
-//         return false;
-//     }
-// }
+
+//UpdatingHealthBars
+const updateBars = () => {
+    let enemyProportion = currentEnemy.currentHP / currentEnemy.maxHP;
+    let enemyPercents = enemyProportion * 100;
+    enemyHealthBar.value = enemyPercents;
+    let heroProportion = player.currentHP / player.maxHP;
+    let heroPercents = heroProportion * 100
+    heroHealthBar.value = heroPercents;
+    let armorProportion = player.armor / player.shieldCap;
+    let armorPercent = armorProportion * 100;
+    heroArmorBar.value = armorPercent;
+}
+
 
 //ENEMIES FOR EACH BATTLE
 let currentEnemy = null;
@@ -295,11 +305,17 @@ const animateButtons = () => {
     attackIcon.style.width = '512px';
     attackIcon.style.height = '512px';
     attackIcon.style.transform = 'scale(.25)';
-    attackIcon.style.opacity = '1'
+    attackIcon.style.opacity = '1';
     armorIcon.style.width = '512px';
     armorIcon.style.height = '512px';
     armorIcon.style.transform = 'scale(.25)';
     armorIcon.style.opacity = '1';
+    heroArmorBar.style.height = '5rem';
+    heroArmorBar.style.opacity = '1';
+    heroHealthBar.style.height = '5rem';
+    heroHealthBar.style.opacity = '1';
+    enemyHealthBar.style.height = '5rem';
+    enemyHealthBar.style.opacity = '1';
 }
 
 const undoAnimateButtons = () => {
@@ -307,59 +323,76 @@ const undoAnimateButtons = () => {
     attackIcon.style.opacity = '0';
     armorIcon.style.height = '0';
     armorIcon.style.opacity = '0';
+    heroArmorBar.style.height = '0';
+    heroArmorBar.style.opacity = '0';
+    heroHealthBar.style.height = '0';
+    heroHealthBar.style.opacity = '0';
+    enemyHealthBar.style.height = '0';
+    enemyHealthBar.style.opacity = '0';
 }
 //Game Loop
-// const fightingPossibility = (enemy) => {               <== broken.. starting over
+// const fightingPossibility = (enemy) => {             <== broken.. starting over
 //     setTimeout(() => { }, 2000);
 //     if(playersAttack.called && playerTurn === true){
-//         console.log('you attack');
-//         playersAttack.called = false;
-//         playerTurn = false;
-//     }else if(playersArmor === 'called' && playerTurn === true){
-//         console.log('you gain armor');
-//         playersArmor.called = false;
-//         playerTurn = false;
-//     }
-//     if(playerTurn === false){
-//         enemy.attack(player);
-//         console.log('enemy attacked');
-//         playerTurn = true;
-//     }else{
-//         setTimeout(() => { }, 2000);
-//     }    
-// }
-
-// function fightingLoop() {
-//     while (player.currentHP > 0 && currentEnemy.currentHP > 0) {
-//         fightingPossibility(currentEnemy);
-//     }
-
-// }
+    //         console.log('you attack');
+    //         playersAttack.called = false;
+    //         playerTurn = false;
+    //     }else if(playersArmor === 'called' && playerTurn === true){
+        //         console.log('you gain armor');
+        //         playersArmor.called = false;
+        //         playerTurn = false;
+        //     }
+        //     if(playerTurn === false){
+            //         enemy.attack(player);
+            //         console.log('enemy attacked');
+            //         playerTurn = true;
+            //     }else{
+                //         setTimeout(() => { }, 2000);
+                //     }    
+                // }
+                
+                // function fightingLoop() {
+                    //     while (player.currentHP > 0 && currentEnemy.currentHP > 0) {
+                        //         fightingPossibility(currentEnemy);
+                        //     }
+                        
+                        // }
 // const fightingLoop = (location) => {
-    
-//     location.checked = false;
-//     location.classList.remove('clickable');
-//     undoAnimateCharacter(player);
-//     undoAnimateCharacter(currentEnemy);
-//     undoAnimateButtons();
-//     currentEvent = null;
+                            
+ //     location.checked = false;
+    //     location.classList.remove('clickable');
+    //     undoAnimateCharacter(player);
+    //     undoAnimateCharacter(currentEnemy);
+    //     undoAnimateButtons();
+    //     currentEvent = null;
+    // }
+// const checkForAction = () => {
+     //     if(playersArmorCalled){
+    //         playersArmorCalled = false;
+    //         return true;
+    //     }else if(playersAttackCalled){
+    //         playersAttackCalled = false
+    //         return true;
+    //     }else{
+    //         return false;
+//     }
 // }
-
-//Starting from checkbox change
-const startBattle = (event) => {
-    if(event.target.checked === true){
-        eventTarget = event.target;
-        if(eventTarget === event1Check && event1Check.classList.contains('clickable')){
-            alert('Press the sword button to attack. Press the shield button to gain a varying amount of armor. Your enemy will attack simultaniously when you choose your action.');
-            currentEvent = event1Check;
-            nextEvent = event2Check;
-            currentIcon = event1Icon;
-            nextIcon = event2Icon;
-            currentEnemy = battle1Brute;
-            animateButtons();
-            animateCharacter(player);
-            animateCharacter(currentEnemy);
-        }else if(eventTarget === event2Check && event2Check.classList.contains('clickable')){
+                            
+                            //Starting from checkbox change
+                            const startBattle = (event) => {
+                                if(event.target.checked === true){
+                                    eventTarget = event.target;
+                                    if(eventTarget === event1Check && event1Check.classList.contains('clickable')){
+                                        alert('Press the sword button to attack. Press the shield button to gain a varying amount of armor. Your health is the top bar, your armor is the bottom bar. Be careful! Your enemy will attack simultaniously when you choose your action.');
+                                        currentEvent = event1Check;
+                                        nextEvent = event2Check;
+                                        currentIcon = event1Icon;
+                                        nextIcon = event2Icon;
+                                        currentEnemy = battle1Brute;
+                                        animateButtons();
+                                        animateCharacter(player);
+                                        animateCharacter(currentEnemy);
+                                    }else if(eventTarget === event2Check && event2Check.classList.contains('clickable')){
             alert('After defeating your first enemy, you stumble upon an abandoned town. No noise, no lights. Save for 1 tavern, that has a warm glow inside. You enter and are greeted');
             currentEvent = event2Check;
             nextEvent = event3Check;
