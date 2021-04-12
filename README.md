@@ -12,7 +12,7 @@ my inspiration came from this blog: https://www.freecodecamp.org/news/learning-j
 and from the layout of the popular game "Slay the Spire"
 
 ## Contributing
-Pull requests are welcome. And I will also be updating this game to add more classes and fix bugs.
+Pull requests are welcome.
 
 When requesting a pull, please state:
 * What you added
